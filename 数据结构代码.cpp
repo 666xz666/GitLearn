@@ -1,7 +1,6 @@
+//以下为数据结构学习时使用的代码，类似于笔记
+
 #define _CRT_SECURE_NO_WARNINGS
-
-
-
 //1：例子：printN()
 //#include<iostream>
 //#include<windows.h>
