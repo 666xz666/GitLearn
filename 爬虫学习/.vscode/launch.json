@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: multi_pool_li_video", // 配置名称，将在调试配置下拉列表中显示
+            "name": "Python: main", // 配置名称，将在调试配置下拉列表中显示
             "type": "python", // 调试类型，这里是Python
             "request": "launch", // 请求类型，这里选择“launch”表示启动调试
-            "module": "multi_pool_li_video", // 要执行的Python模块名称，请替换为实际的模块名称
+            "program": "${file}", // 要执行的Python模块名称，请替换为实际的模块名称
             "cwd": "${workspaceFolder}", // 当前工作目录设置为项目文件夹
             "console": "integratedTerminal", // 使用VSCode的集成终端显示输出
             "args": [], // 如果需要传递命令行参数，可以在这个列表中添加
