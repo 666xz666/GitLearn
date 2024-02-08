@@ -1753,6 +1753,321 @@
 //}
 
 
+// #include<iostream>
+// #include<vector>
+// #include<unordered_map>
+// #include<algorithm>
+// #include<cmath>
+// #include<unordered_set>
+// #include<cmath>
+// using namespace std;
+////八大排序
+//void InsertSort(int* a, int n)
+//{
+//
+//	for (int i = 0; i < n - 1; ++i)
+//	{
+//		int end = i;
+//		int x = a[end + 1];//将end后面的值保存到x里面了
+//		//将x插入到[0，end]的有序区间
+//		while (end >= 0)
+//		{
+//			if (a[end] > x)
+//			{
+//				a[end + 1] = a[end];  //往后挪动一位
+//				--end;
+//			}
+//			else
+//			{
+//				break;
+//			}
+//		}
+//		a[end + 1] = x;      //x放的位置都是end的后一个位置
+//	}
+//
+//}
+//
+////bottom-up merge sort如何对list进行排序
+//#include <iostream>
+//#include <list>
+//
+//using namespace std;
+//
+//template <typename T>
+//void merge_sort_list(list<T>& l)
+//{
+//    if (l.size() <= 1) return;
+//
+//    list<T> left, right;
+//    typename list<T>::iterator it = l.begin();
+//    int i = 0;
+//    while (it != l.end())
+//    {
+//        if (i < l.size() / 2) left.push_back(*it);
+//        else right.push_back(*it);
+//        ++it;
+//        ++i;
+//    }
+//
+//    merge_sort_list(left);
+//    merge_sort_list(right);
+//
+//    l.clear();
+//    typename list<T>::iterator it_left = left.begin(), it_right = right.begin();
+//    while (it_left != left.end() && it_right != right.end())
+//    {
+//        if (*it_left < *it_right)
+//        {
+//            l.push_back(*it_left);
+//            ++it_left;
+//        }
+//        else
+//        {
+//            l.push_back(*it_right);
+//            ++it_right;
+//        }
+//    }
+//
+//    while (it_left != left.end())
+//    {
+//        l.push_back(*it_left);
+//        ++it_left;
+//    }
+//
+//    while (it_right != right.end())
+//    {
+//        l.push_back(*it_right);
+//        ++it_right;
+//    }
+//}
+//
+//int main()
+//{
+//    list<int> l{ 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5 };
+//    merge_sort_list(l);
+//    for (auto x : l) cout << x << " ";
+//    cout << endl;
+//    return 0;
+//}
+//
+//
+//
+//int main() {
+//	int a[4] = { 32,56,67,36 };
+//	InsertSort(a, 4);
+//	for (int i = 0; i < 4; i++)
+//		cout << a[i]<<" ";
+//	return 0;
+//}
+//
+//
+////异位单词分类
+//class Solution {/*先对字符串排序作为哈希表的键，再让同类字符串vector作为哈希表的值*/
+//public:
+//	vector<vector<string>> groupAnagrams(vector<string>& strs) {
+//		unordered_map<string, vector<string>> mp;
+//		for (string& str : strs) {
+//			string key = str;
+//			sort(key.begin(), key.end());
+//			mp[key].emplace_back(str);
+//		}
+//		vector<vector<string>> ans;
+//		for (auto it = mp.begin(); it != mp.end(); ++it) {
+//			ans.emplace_back(it->second);
+//		}
+//		return ans;
+//	}
+//};
+//
+
+//class Solution {/*26个字母对应26个素数，单词对应乘积*/
+//public:
+//    
+//   
+//    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+//        unordered_map<char, unsigned long long int>mp = {
+//            {'a', 2}, {'b', 3}, {'c', 5}, {'d', 7}, {'e', 11}, {'f', 13}, {'g', 17}, {'h', 19}, {'i', 23},
+//            {'j', 29}, {'k', 31}, {'l', 37}, {'m', 41}, {'n', 43}, {'o', 47}, {'p', 53}, {'q', 59}, {'r', 61},
+//            {'s', 67}, {'t', 71}, {'u', 73}, {'v', 79}, {'w', 83}, {'x', 89}, {'y', 97}, {'z', 101}
+//        };
+//
+//        unordered_map<unsigned long long int, vector<string>>mp1;
+//        for (string item : strs) {
+//            unsigned long long int n = 1;
+//            for (char ch : item) {
+//                n *= mp[ch];
+//            }
+//
+//            mp1[n].emplace_back(item);
+//        }
+//
+//        vector<vector<string>> ans;
+//        for (auto it = mp1.begin(); it != mp1.end(); ++it) {
+//            ans.emplace_back(it->second);
+//        }
+//
+//        return ans;
+//    }
+//};
+
+//class Solution {
+//public:
+//    int longestConsecutive(vector<int>& nums) {
+//        if (nums.size() == 0) return 0;
+//        int maxlen = 1;
+//        unordered_set<int> s;
+//        for (auto num : nums) {
+//            s.insert(num);
+//        }
+//        for (auto num : nums) {
+//            int len = 1;
+//            if (s.count(num - 1)) continue;
+//            while (s.count(num + 1))
+//            {
+//                len++;
+//                s.erase(num + 1);
+//                num++;
+//            }
+//            maxlen = max(maxlen,len);
+//        }
+//        
+//       return maxlen;
+//    }
+//};
+
+//class Solution {
+//public:
+//    vector<vector<int>> threeSum(vector<int>& nums) {
+//        vector<vector<int>> ans;
+//        sort(nums.begin(), nums.end());
+//        for (int i = 0; i < nums.size(); i++) {
+//            if (i > 0 && nums[i] == nums[i - 1]) continue;
+//            int l = i + 1, r = nums.size() - 1;
+//            while (l < r) {
+//                if (nums[i] + nums[l] + nums[r] > 0) r--;
+//                else if (nums[i] + nums[l] + nums[r] < 0) l++;
+//                else {
+//                    vector<int> arg = { nums[i],nums[l],nums[r] };
+//                    ans.emplace_back(arg);
+//                    l++;
+//                    while (nums[l] == nums[l - 1] && l < r) l++;
+//                }
+//            }
+//        }
+//        return ans;
+//    }
+//};
+//int main() {
+//    Solution s;
+//    vector<int>n = { -1,0,1,2,-1,-4 };
+//    auto ans=s.threeSum(n);
+//    for (auto item : ans) {
+//        for(auto num : item)
+//        {
+//            cout << num << " ";
+//            
+//        }
+//        cout << endl;
+//    }
+//    return 0;
+//}
+//
+
+//class Solution {
+//public:
+//    int trap(vector<int>& height) {
+//        int ans = 0;
+//        int i = 0, j = 0;
+//        while (i + 1 < height.size() && height[i + 1] >= height[i]) i++;
+//        while (i < height.size() && j < height.size()) {
+//            j = i + 1;
+//            while (j < height.size() && height[j] < height[i]) j++;
+//            if (j == height.size()) {
+//                j = i + 1;
+//                int maxj = -1,maxh=-1;
+//                while(j<height.size())
+//                {
+//                    if (height[j] >= maxh) {
+//                        maxh = height[j];
+//                        maxj = j;
+//                    }
+//                    j++;
+//                }
+//                for (int k = i + 1; k < maxj; k++) ans += height[maxj] - height[k];
+//                j=i = maxj;
+//            }
+//            else {
+//                for (int k = i + 1; k < j; k++) ans += height[i] - height[k];
+//                i = j;
+//            }
+//        }
+//
+//        return ans;
+//    }
+//};
+//
+//int main(){
+//    Solution s;
+//    vector<int> height = { 4,2,0,3,2,5 };
+//    int ans=s.trap(height);
+//    cout << ans;
+//    return 0;
+//}
+//class Solution {
+//public:
+//    vector<int> findAnagrams(string s, string p) {
+//        vector<int> ans;
+//        unordered_set<char>Set1, Set2;
+//        int len = s.size();
+//        int first = 0, last = first + p.size() - 1;
+//        for (int i = first; i <= last && last < len; i++) {
+//            Set2.insert(p[i]);
+//        }
+//        while (last < len) {
+//            for (int i = first; i <= last && last < len; i++) {
+//                Set1.insert(s[i]);
+//            }
+//            while (Set1 != Set2 && last < len) {
+//                Set1.erase(s[first]);
+//                first++;
+//                if (last < len) {
+//                    last++;
+//                    Set1.insert(s[last]);
+//                }
+//            }
+//            if (last < len) {
+//                ans.emplace_back(first);
+//                while (last + 1 < len && s[last + 1] == s[first]) {
+//                    first++;
+//                    ans.emplace_back(first);
+//                    last++;
+//                }
+//                if (last + 1 < len)
+//                {
+//                    first = last + 2;
+//                    last = first + p.size() - 1;
+//                }
+//                Set1.clear();
+//            }
+//        }
+//
+//        return ans;
+//    }
+//};
+//
+//
+//int main() {
+//    Solution S;
+//    string s = "cbaebabacd";
+//    string p = "abc";
+//    vector<int> ans=S.findAnagrams(s, p);
+//    for (int item : ans) {
+//        cout << item << " ";
+//    }
+//    return 0;
+//}
+
+
 
 
  

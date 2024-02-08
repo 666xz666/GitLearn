@@ -6,7 +6,7 @@
 
 - 数据结构学习
 
-    -  学习时使用c++构建的大部分数据结构以及例题， 适合初学者学习。
+    -  学习时使用c/c++构建的大部分数据结构以及例题， 适合初学者学习。
     - 辅助视频：[浙江大学数据结构 陈越](https://www.bilibili.com/video/BV1H4411N7oD)
     - 辅助教材：[数据结构教程（C++语言描述）（第2版·微课视频版）](http://www.tup.tsinghua.edu.cn/booksCenter/book_09111001.html)
 
